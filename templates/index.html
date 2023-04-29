@@ -1,0 +1,269 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Disease Prediction</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<style>
+		.container {
+			width: 400px;
+			margin: 0 auto;
+            /* align-content: center; */
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+
+		.form-group {
+			margin-bottom: 15px;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 5px;
+		}
+
+		input {
+			width: 100%;
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+		}
+
+		#prediction-result {
+			margin-top: 20px;
+			padding: 10px;
+			background-color: #f8f8f8;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+		}
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Disease Prediction</h1>
+    <form action="/predict" method="POST">
+        <div class="form-group">
+            <label for="input">Input :</label>
+            <input type="text" id="input" name="input" required>
+        </div>
+        
+        <input type="submit" value="Predict">
+    </form>
+
+    <h2>Prediction:</h2>
+    <p id="prediction">{{prediction}}</p>  
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+      integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+      integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style2.css"> -->
+    <title>MANAS</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Comme&family=Nunito+Sans&family=Rubik+Iso&family=Work+Sans:wght@300&display=swap");
+      /* font-family: 'Comme', sans-serif;
+	font-family: 'Nunito Sans', sans-serif;
+	font-family: 'Rubik Iso', cursive;
+	font-family: 'Work Sans', sans-serif; */
+      .logo {
+        width: 160px;
+      }
+      .grid-l {
+        margin-top: 100px;
+        margin-bottom: 100px;
+      }
+      .h1 {
+        text-align: left;
+        font-family: "Comme", sans-serif;
+        font-size: 95px;
+      }
+      .about {
+        background-color: #002737;
+        height: 100%;
+        width: 100%;
+      }
+      .h2 {
+        margin-top: 150px;
+        color: white;
+        text-align: left;
+        font-family: "Comme", sans-serif;
+        font-size: 75px;
+      }
+      .h3 {
+        color: white;
+        text-align: left;
+        font-family: "Comme", sans-serif;
+        font-size: 140px;
+      }
+      .h4 {
+        color: white;
+        text-align: left;
+        font-family: "Comme", sans-serif;
+        font-size: 80px;
+        margin-bottom: 40px;
+      }
+      .box {
+        width: 600px;
+        height: 600px;
+        background-color: #e2e6f2;
+        margin-top: 100px;
+        margin-left: 50px;
+        border-radius: 25px;
+      }
+
+      .place-box {
+        margin-top: 100px;
+      }
+      p {
+        padding: 45px;
+        text-align: justify;
+        font-family: "Comme", sans-serif;
+        font-size: 21px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar bg-body-tertiary fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+          ><img class="logo" src="{{ url_for('static', filename='LOGO.png') }}" alt=""
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <div class="offcanvas-header">
+            <img class="logo" src="{{ url_for('static', filename='LOGO.png') }}" alt="" />
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('predict') }}">Predict</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Donate Organ
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{ url_for('donation') }}">Donate</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for('receive') }}">Recieve</a></li>
+                  <li></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="grid-l">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col col-lg-6">
+            <iframe
+              src="https://my.spline.design/untitled-ba267525aeaf0cfbd21e8b988a058f93/"
+              frameborder="0"
+              width="100%"
+              height="100%"
+            ></iframe>
+          </div>
+          <div class="col col-lg-6">
+            <h1 class="h1">
+              WE ARE HERE <br />
+              FOR YOU ALL
+            </h1>
+            <h1 class="h1">ANYWHERE & ANYTIME</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about">
+      <div class="container">
+        <div class="row">
+          <div class="col col-lg-6">
+            <h1 class="h2">WELCOME TO</h1>
+            <h1 class="h3">MANAS</h1>
+            <h1 class="h4">PREDICT, CONNECT & SUPPORT</h1>
+          </div>
+          <div class="col col-lg-6">
+            <div class="box">
+              <div class="place-box">
+                <p>
+                  An innovative healthcare platform that leverages cutting-edge
+                  technologies to provide predictive disease diagnosis, organ
+                  donation registration, and mental health support. Our platform
+                  is designed to put the power of healthcare in your hands,
+                  allowing you to predict diseases based on your symptoms,
+                  register as an organ donor, and receive confidential mental
+                  health support from our chatbot. With our easy-to-use
+                  interface, personalized recommendations, and commitment to
+                  patient-centered care, Manas is revolutionizing the healthcare
+                  industry by making it more accessible, efficient, and
+                  empowering. Join us today and take control of your health
+                  journey with confidence.
+                </p>
+              </div>
+              <center>
+                <button type="button" class="btn btn-dark">💗</button>
+              </center>
+            </div>
+            <div class=""></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

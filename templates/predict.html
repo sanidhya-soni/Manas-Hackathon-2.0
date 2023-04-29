@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+      integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+      integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <link rel="stylesheet" href="./css/predict.css"> -->
+    <title>Predict</title>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Comme&family=Nunito+Sans&family=Rubik+Iso&family=Work+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comme&family=Foldit:wght@500&family=Nunito+Sans&family=Rubik+Iso&family=Work+Sans:wght@300&display=swap');
+/* font-family: 'Comme', sans-serif;
+font-family: 'Nunito Sans', sans-serif;
+font-family: 'Rubik Iso', cursive;
+font-family: 'Work Sans', sans-serif; 
+font-family: 'Foldit', cursive;
+*/
+.logo{
+    width: 160px;
+}
+.responsive {
+    width: 100%;
+    height: auto;
+    clip-path: polygon(20% 10%, 100% 0, 80% 90%, 0 100%);
+  }
+
+  .content{
+    margin-top: 30px;
+  }
+
+  .h2{
+    text-align: left;
+    font-family: 'Foldit', cursive;
+    font-size: 65px;
+    padding: 20px;
+}
+
+.head{
+    background-color: white;
+    position: relative;
+    top: -250px;
+    left:350px;
+    width: fit-content;
+
+}
+
+/**/
+
+.form {
+  background-color: #15172b;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 500px;
+  padding: 20px;
+  width: 320px;
+}
+
+.title {
+  color: #eee;
+  font-family: sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+.subtitle {
+  color: #eee;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.ic1 {
+  margin-top: 40px;
+}
+
+.ic2 {
+  margin-top: 30px;
+}
+
+.input {
+  background-color: #303245;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  font-size: 18px;
+  height: 100%;
+  outline: 0;
+  padding: 4px 20px 0;
+  width: 100%;
+  height: 50px;
+}
+
+.cut {
+  background-color: #15172b;
+  border-radius: 10px;
+  height: 20px;
+  left: 20px;
+  position: absolute;
+  top: -20px;
+  transform: translateY(0);
+  transition: transform 200ms;
+  width: 76px;
+}
+
+.cut-short {
+  width: 50px;
+}
+
+.placeholder {
+  color: #65657b;
+  font-family: sans-serif;
+  left: 20px;
+  line-height: 14px;
+  pointer-events: none;
+  position: absolute;
+  transform-origin: 0 50%;
+  transition: transform 200ms, color 200ms;
+  top: 20px;
+}
+
+.submit {
+  background-color: #08d;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  outline: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.submit:active {
+  background-color: #06b;
+}
+
+.hand{
+  position: relative;
+  z-index: -1;
+  top:-460px;
+  right: -230px;
+  width: 50%;
+}
+
+.text-box{
+  text-align: justify;
+  margin-right: 250px;
+  margin-left:-180px;
+  margin-top:50px;
+}
+
+.container{
+  margin-top: 50px;
+}
+
+.output{
+  background-color: #15172b;
+  color: white;
+  width: fit-content;
+  padding: 15px;
+  border-radius: 25px;
+  margin-top: 38px;
+}
+
+.arrow{
+  position: absolute;
+  left :10px;
+  bottom: 5px;
+  padding-top: 200px;
+    margin-top: 200px;
+    top: 880px;
+    width: 200px;
+    left: 500px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .input-container {
+  height: 50px;
+  position: relative;
+  width: 100%;
+} */
+
+
+/* .input:focus ~ .cut,
+.input:not(:placeholder-shown) ~ .cut {
+  transform: translateY(8px);
+} */
+
+/* .input:focus ~ .placeholder,
+.input:not(:placeholder-shown) ~ .placeholder {
+  transform: translateY(-30px) translateX(10px) scale(0.75);
+} */
+
+/* .input:not(:placeholder-shown) ~ .placeholder {
+  color: #808097;
+} */
+
+/* .input:focus ~ .placeholder {
+  color: #dc2f55;
+} */
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar bg-body-tertiary fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+          ><img class="logo" src="{{ url_for('static', filename='LOGO.png') }}" alt=""
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <div class="offcanvas-header">
+            <img class="logo" src="{{ url_for('static', filename='LOGO.png') }}" alt="" />
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('predict') }}">Predict</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Donate Organ
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{ url_for('donation') }}">Donate</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for('receive') }}">Recieve</a></li>
+                  <li></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="content">
+      <img
+        class="responsive"
+        src="{{ url_for('static', filename='predict.jpg') }}"
+        alt=""
+      />
+      <div class="head">
+        <center><h1 class="h2">DIAGNOSE YOUR SYMPTOMS</h1></center>
+      </div>
+      <div class="content2">
+        <div class="container text-center">
+          <div class="row">
+            <div class="col col-lg-6 last">
+              <form class="form" action="/predict" method="POST">
+                <div class="title">Don't Worry</div>
+                <div class="subtitle">Let's Diagnose You!</div>
+                <div class="input-container ic1">
+                  <input
+                    id="firstname"
+                    class="input"
+                    type="text"
+                    placeholder=" First Name "
+                  />
+                  <!-- <div class="cut"></div> -->
+                  <label for="firstname" class="placeholder">First name</label>
+                </div>
+                <div class="input-container ic2">
+                  <input
+                    id="lastname"
+                    class="input"
+                    type="text"
+                    placeholder="Last Name"
+                  />
+                  <!-- <div class="cut">las</div> -->
+                  <label for="lastname" class="placeholder">Last name</label>
+                </div>
+                <div class="input-container ic2">
+                  <input
+                    id="input"
+                    class="input"
+                    type="text"
+                    placeholder="Symptoms"
+                    name="input"
+                  />
+                  <!-- <div class="cut cut-short"></div> -->
+                  <label for="input" class="placeholder">Symptoms</label>
+                </div>
+                <button type="submit" class="submit" value="Predict">
+                    Submit
+                </button>
+                <!-- <input type="submit" value="Predict"> -->
+              </form>
+              <!-- <h2>Prediction:</h2>
+              <p id="prediction">{{prediction}}</p> -->
+            </div>
+            <div class="col col-lg-6">
+              <p class="text-box">Welcome to the Disease Prediction page of Manas - our go-to resource for
+                predictive disease diagnosis. With our state-of-the-art natural language processing (NLP)
+                algorithm, you can easily enter your symptoms and receive a list of potential diseases along
+                with recommendations for further evaluation and treatment. Our algorithm takes into account
+                various factors such as your age, gender, medical history, and lifestyle habits to provide
+                personalized and accurate disease predictions. Whether you're experiencing mild symptoms or
+                have concerns about a chronic condition, Manas is here to provide you with the information
+                and support you need to make informed decisions about your health. So why wait? Enter your
+                symptoms today and get one step closer to a healthier future.</p>
+            <div class="output">
+                <h2>OUR PREDICTION:</h2>
+                <p id="prediction">{{ prediction }}</p>
+            </div>
+            <img class="arrow" src="{{ url_for('static', filename='arrow.png') }}" alt="">
+              <img
+                class="hand"
+                src="{{ url_for('static', filename='hand.png') }}"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="container">
+      <h1>Disease Prediction</h1>
+      <form action="/predict" method="POST">
+        <div>
+        <label for="input">Input :</label>
+        <input type="text" id="input" name="input" required />
+        <input type="submit" value="Predict" />
+    </div>
+      </form>
+
+      <h2>Prediction:</h2>
+      <p id="prediction">{{prediction}}</p>
+    </div> -->
+  </body>
+</html>
