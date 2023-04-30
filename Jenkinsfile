@@ -30,7 +30,7 @@ pipeline {
                         bat 'sonar-scanner.bat \
                              -Dsonar.projectKey=manas \
                              -Dsonar.sources=. \
-                             -Dsonar.host.url=http://172.22.160.1:9000 \
+                             -Dsonar.host.url=http://172.19.240.1:9000 \
                              -Dsonar.login=sqp_dbcae01bc367f4cf275d16121f25602abfa4d34d'
                     }
                 }
@@ -52,11 +52,11 @@ pipeline {
                 bat 'docker run -d -p 3001:3000 --name grafana grafana/grafana'
 //                 bat 'timeout /t 10 /nobreak'
                 bat "curl -X POST -H \"Content-Type: application/json\" \
-                    -d '{\"name\":\"db\",\"type\":\"prometheus\",\"url\":\"http://172.22.160.1:9090\",\"access\":\"proxy\",\"isDefault\":true}' \
-                    http://admin:${API_KEY}@172.22.160.1:3000/api/datasources"
+                    -d '{\"name\":\"db\",\"type\":\"prometheus\",\"url\":\"http://172.19.240.1:9090\",\"access\":\"proxy\",\"isDefault\":true}' \
+                    http://admin:${API_KEY}@172.19.240.1:3000/api/datasources"
                 bat "curl -X POST -H \"Content-Type: application/json\" \
                     -d '{\"dashboard\":{\"id\":null,\"title\":\"${JOB_NAME}-${BUILD_NUMBER}\",\"tags\":[\"devops\"],\"timezone\":\"browser\",\"schemaVersion\":21,\"panels\":[{\"id\":1,\"gridPos\":{\"x\":0,\"y\":0,\"w\":12,\"h\":8},\"type\":\"graph\",\"title\":\"Panel Title\",\"datasource\":\"db\",\"targets\":[{\"expr\":\"up\",\"legendFormat\":\"\",\"refId\":\"A\"}],\"xaxis\":{\"mode\":\"time\",\"show\":true},\"yaxes\":[{\"format\":\"short\",\"show\":true},{\"format\":\"short\",\"show\":true}]},{\"collapsed\":false,\"gridPos\":{\"h\":2,\"w\":24,\"x\":0,\"y\":8},\"id\":2,\"panels\":[],\"title\":\"\",\"type\":\"row\"}],\"version\":0,\"links\":[]},\"overwrite\":false}' \
-                    http://admin:${API_KEY}@172.22.160.1:3000/api/dashboards/db"
+                    http://admin:${API_KEY}@172.19.240.1:3000/api/dashboards/db"
             }
         }
     }
