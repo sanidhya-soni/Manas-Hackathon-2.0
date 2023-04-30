@@ -240,7 +240,7 @@ font-family: 'Foldit', cursive;
   <body>
     <nav class="navbar bg-body-tertiary fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"
+        <a class="navbar-brand" href="{{ url_for('main_page') }}"
           ><img class="logo" src="{{ url_for('static', filename='LOGO.png') }}" alt=""
         /></a>
         <button
@@ -271,7 +271,7 @@ font-family: 'Foldit', cursive;
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html"
+                <a class="nav-link active" aria-current="page" href="{{ url_for('main_page') }}"
                   >Home</a
                 >
               </li>

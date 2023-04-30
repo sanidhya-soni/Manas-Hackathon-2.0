@@ -1,10 +1,7 @@
-from unittest import result
 import boto3
 from string import digits
 import re
-from sklearn.ensemble import RandomForestClassifier
 from flask import Flask, render_template, request
-import numpy as np
 import pandas as pd
 import nltk
 from nltk.corpus import stopwords
@@ -18,11 +15,7 @@ nltk.download('wordnet')
 app = Flask(__name__)
 
 
-session = boto3.Session(
-    aws_access_key_id='AKIAVY5JKO7NXNLCHBF7',
-    aws_secret_access_key='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',
-    region_name='ap-south-1'
-)
+session = boto3.Session(region_name='ap-south-1')
 
 client = session.client('dynamodb')
 resource = session.resource('dynamodb')
@@ -131,13 +124,6 @@ def predict():
 
 @app.route('/donate', methods=['POST'])
 def donar_entry():
-    # name = str(request.form['name'])
-    # age = str(request.form['age'])
-    # address = str(request.form['address'])
-    # contact = str(request.form['contact'])
-    # blood_group = str(request.form['blood_group'])
-    # organ = str(request.form['organ'])
-
 
     client = boto3.client('dynamodb')
     resource = boto3.resource('dynamodb')
@@ -170,21 +156,6 @@ def donar_entry():
     details['organ'] = str(request.form['organ'])
 
     response = table.put_item(Item=details)
-
-
-    # donar_response = donar_table.scan()
-    # recipient_response = recipient_table.scan()
-
-    # donars = donar_response['Items']
-    # recipient = recipient_response['Items']
-
-    # index = []
-    # for i in range(len(donars)):
-    #     if donars[i]['organ'].lower() == recipient[0]['organ'].lower():
-    #         index.append(i)
-
-    # for i in index:
-    #     print(donars[i])
 
     return render_template('donate.html')
 
@@ -238,17 +209,14 @@ def recieve():
     if len(donars)==0:
         result = "No Angel Found"
     else:
-        result += "We have found an angel named : "+donars[0]['name']
-        result += "\n"
-        result += "Contact: "+donars[0]['contact']
-        result += "<br>"
-        result += "Medical history: "+donars[0]['medical_history']
-        result += "<br>"
-        result += "Address: "+donars[0]['address']
-        result += "<br>"
-        result += "Address: "+donars[0]['blood_group']
-        result += "<br>"
-        result += "Age: "+donars[0]['age']
+        result = f'''
+            We have found an angel named : {donars[0]['name']}
+            Contact: {donars[0]['contact']}
+            Medical history: {donars[0]['medical_history']}
+            Address: {donars[0]['address']}
+            Age: {donars[0]['age']}
+
+        '''
         
 
     return render_template('recieve.html',result=result)

@@ -201,7 +201,7 @@
   <body>
     <nav class="navbar bg-body-tertiary fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"
+        <a class="navbar-brand" href="{{ url_for('main_page') }}"
           ><img class="logo" src="{{ url_for('static', filename='LOGO.png') }}" alt=""
         /></a>
         <button
@@ -232,7 +232,7 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html"
+                <a class="nav-link active" aria-current="page" href="{{ url_for('main_page') }}"
                   >Home</a
                 >
               </li>
@@ -306,6 +306,8 @@
                     type="text"
                     name="name"
                     placeholder=" Name "
+                    pattern="[A-Za-z\-]+" 
+                    required
                   />
                   <!-- <div class="cut"></div> -->
                   <label for="name" class="placeholder">Name</label>
@@ -317,6 +319,8 @@
                     type="text"
                     name="age"
                     placeholder="Age"
+                    min="18"
+                    required
                   />
                   <!-- <div class="cut">las</div> -->
                   <label for="age" class="placeholder">Age</label>
@@ -328,6 +332,7 @@
                     type="text"
                     name="address"
                     placeholder="Address"
+                    required
                   />
                   <!-- <div class="cut cut-short"></div> -->
                   <label for="address" class="placeholder">Address</label>
@@ -341,6 +346,8 @@
                     type="text"
                     name="contact"
                     placeholder=" Contact "
+                    pattern="[0-9]{1}[0-9]{9}" 
+                    required
                   />
                   <!-- <div class="cut"></div> -->
                   <label for="contact" class="placeholder">Contact</label>
@@ -352,6 +359,8 @@
                     type="text"
                     name="medical_history"
                     placeholder="Medical History"
+                    pattern="[A-Za-z\-]+" 
+                    required
                   />
                   <!-- <div class="cut">las</div> -->
                   <label for="medical_history" class="placeholder"
@@ -365,6 +374,8 @@
                     type="text"
                     name="blood_group"
                     placeholder="Blood Group"
+                    pattern="^(A|B|AB|O)[+-]$" 
+                    required
                   />
                   <!-- <div class="cut cut-short"></div> -->
                   <label for="blood_group" class="placeholder"
@@ -380,6 +391,8 @@
                 type="text"
                 name="organ"
                 placeholder="Organ Type"
+                pattern="[A-Za-z\-]+" 
+                required
               />
               <!-- <div class="cut cut-short"></div> -->
               <label for="organ" class="placeholder">Organ Type</label>
