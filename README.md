@@ -3,9 +3,9 @@
 Manas is a web application that provides disease predictions using NLP and a portal for organ donation and recipient details. The application is built using Flask, HTML, CSS, and JavaScript. Our goal is to improve healthcare outcomes by promoting early disease detection, increasing access to organ donations, and providing healthcare services to those in need.
 
 # Table of Contents
-- Features
-- Tech Stack
-- Contributing
+- [Features](#Features)
+- [Tech Stack](#Tech-Stack)
+- [Contributing](#Contributing)
 
 # Features
 
