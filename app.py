@@ -206,7 +206,7 @@ def recieve():
     
     
     result = ""
-    if len(donars)==0:
+    if len(index)==0:
         result = "No Angel Found"
     else:
         result = f'''
